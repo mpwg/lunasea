@@ -1,11 +1,82 @@
-# To get started with Dependabot version updates, you'll need to specify which
-# package ecosystems to update and where the package manifests are located.
+# Dependabot configuration for LunaSea mono-repository
+# This repository contains multiple projects with different package managers:
+# - Flutter app (pub)
+# - Node.js projects (npm) 
+# - Ruby gems for fastlane (bundler)
+# - iOS/macOS CocoaPods dependencies
 # Please see the documentation for all configuration options:
 # https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
 
 version: 2
 updates:
-  - package-ecosystem: "pub" # See documentation for possible values
-    directory: "/" # Location of package manifests
+  # Flutter/Dart dependencies for main app
+  - package-ecosystem: "pub"
+    directory: "/lunasea"
     schedule:
       interval: "weekly"
+    labels:
+      - "dependencies"
+      - "flutter"
+
+  # Node.js dependencies for main app build scripts
+  - package-ecosystem: "npm"
+    directory: "/lunasea"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "npm"
+      - "build-tools"
+
+  # Node.js dependencies for cloud functions
+  - package-ecosystem: "npm"
+    directory: "/lunasea-cloud-functions/functions"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "npm"
+      - "cloud-functions"
+
+  # Node.js dependencies for notification service
+  - package-ecosystem: "npm"
+    directory: "/lunasea-notification-service"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "npm"
+      - "notification-service"
+
+  # Ruby gems for iOS fastlane
+  - package-ecosystem: "bundler"
+    directory: "/lunasea/ios"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "ruby"
+      - "fastlane"
+      - "ios"
+
+  # Ruby gems for Android fastlane
+  - package-ecosystem: "bundler"
+    directory: "/lunasea/android"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "ruby"
+      - "fastlane"
+      - "android"
+
+  # Ruby gems for macOS fastlane
+  - package-ecosystem: "bundler"
+    directory: "/lunasea/macos"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "ruby"
+      - "fastlane"
+      - "macos"
