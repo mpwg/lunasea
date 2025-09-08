@@ -18,7 +18,7 @@
   "author": "Jagandeep Brar",
   "license": "GPL-3.0-only",
   "dependencies": {
-    "@types/basic-auth": "^1.1.4",
+    "@types/basic-auth": "^1.1.8",
     "@types/express": "^4.17.18",
     "@types/ioredis": "^4.28.10",
     "@types/node": "^20.8.2",
