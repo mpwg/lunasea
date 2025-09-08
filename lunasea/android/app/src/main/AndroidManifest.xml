@@ -1,9 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="app.lunasea.lunasea">
+    package="app.thriftwood.thriftwood">
     <application
         android:name="${applicationName}"
         android:usesCleartextTraffic="true"
-        android:label="LunaSea"
+        android:label="Thriftwood"
         android:icon="@mipmap/ic_launcher">
         <meta-data android:name="asset_statements" android:resource="@string/asset_statements" />
         <activity
