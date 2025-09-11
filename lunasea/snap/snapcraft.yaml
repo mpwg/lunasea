@@ -1,4 +1,4 @@
-name: lunasea
+name: thriftwood
 version: 11.0.0
 confinement: strict
 base: core22
@@ -6,26 +6,26 @@ base: core22
 summary: summary
 description: description
 slots:
-  dbus-lunasea:
+  dbus-thriftwood:
     interface: dbus
     bus: session
-    name: app.lunasea.lunasea
+    name: app.thriftwood.thriftwood
 apps:
-  lunasea:
-    command: lunasea
+  thriftwood:
+    command: thriftwood
     extensions:
     - gnome
     plugs:
     - home
     - network
     slots:
-    - dbus-lunasea
+    - dbus-thriftwood
 parts:
   zenity:
     plugin: nil
     stage-packages:
     - zenity
-  lunasea:
+  thriftwood:
     source: .
     plugin: flutter
     flutter-target: lib/main.dart

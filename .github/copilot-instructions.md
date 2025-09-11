@@ -1,8 +1,8 @@
-# LunaSea Copilot Instructions
+# Thriftwood Copilot Instructions
 
 ## Repository Overview
 
-LunaSea is a Flutter-based self-hosted media controller application that connects to various media automation services (Radarr, Sonarr, Lidarr, NZBGet, SABnzbd, Tautulli, etc.). This is a **mono-repository** containing multiple projects:
+Thriftwood is a Flutter-based self-hosted media controller application that connects to various media automation services (Radarr, Sonarr, Lidarr, NZBGet, SABnzbd, Tautulli, etc.). This is a **mono-repository** containing multiple projects:
 
 - `lunasea/` - Main Flutter application (Dart/Flutter 3.0+)
 - `lunasea-cloud-functions/` - Firebase cloud functions (Node.js)

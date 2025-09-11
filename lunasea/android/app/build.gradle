@@ -29,7 +29,7 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    namespace = "app.lunasea.lunasea"
+    namespace = "app.thriftwood.thriftwood"
     compileSdkVersion 35
 
     compileOptions {
@@ -46,7 +46,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "app.lunasea.lunasea"
+        applicationId "app.thriftwood.thriftwood"
         minSdkVersion 24
         targetSdkVersion 35
         versionCode flutterVersionCode.toInteger()

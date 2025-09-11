@@ -18,7 +18,7 @@ class LunaDrawerHeader extends StatelessWidget {
           hideLeading: true,
           useDrawer: false,
           title: LunaBox.profiles.keys.length == 1
-              ? 'LunaSea'
+              ? 'Thriftwood'
               : LunaSeaDatabase.ENABLED_PROFILE.read(),
           profiles: LunaBox.profiles.keys.cast<String>().toList(),
           actions: [

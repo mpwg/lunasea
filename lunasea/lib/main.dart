@@ -12,7 +12,7 @@ import 'package:lunasea/system/recovery_mode/main.dart';
 import 'package:lunasea/system/window_manager/window_manager.dart';
 import 'package:lunasea/system/platform.dart';
 
-/// LunaSea Entry Point: Bootstrap & Run Application
+/// Thriftwood Entry Point: Bootstrap & Run Application
 ///
 /// Runs app in guarded zone to attempt to capture fatal (crashing) errors
 Future<void> main() async {
