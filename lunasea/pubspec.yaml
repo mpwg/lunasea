@@ -1,4 +1,4 @@
-name: lunasea
+name: thriftwood
 description: Self-Hosted Controller
 version: 11.0.0+1
 publish_to: "none"
@@ -86,11 +86,11 @@ flutter_native_splash:
 msix_config:
   architecture: x64
   capabilities: internetClientServer,privateNetworkClientServer
-  display_name: LunaSea
+  display_name: Thriftwood
   enable_at_startup: false
-  execution_alias: lunasea
-  identity_name: app.lunasea.lunasea
+  execution_alias: thriftwood
+  identity_name: app.thriftwood.thriftwood
   install_certificate: false
   logo_path: assets\icon\icon_windows.png
-  output_name: lunasea-windows-amd64
+  output_name: thriftwood-windows-amd64
   store: false

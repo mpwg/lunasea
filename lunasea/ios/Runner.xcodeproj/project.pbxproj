@@ -426,9 +426,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.lunasea.lunasea;
+				PRODUCT_BUNDLE_IDENTIFIER = app.thriftwood.thriftwood;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development app.lunasea.lunasea";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development app.thriftwood.thriftwood";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -567,9 +567,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.lunasea.lunasea;
+				PRODUCT_BUNDLE_IDENTIFIER = app.thriftwood.thriftwood;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development app.lunasea.lunasea";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development app.thriftwood.thriftwood";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -605,10 +605,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.lunasea.lunasea;
+				PRODUCT_BUNDLE_IDENTIFIER = app.thriftwood.thriftwood;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore app.lunasea.lunasea";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore app.lunasea.lunasea";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore app.thriftwood.thriftwood";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore app.thriftwood.thriftwood";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
