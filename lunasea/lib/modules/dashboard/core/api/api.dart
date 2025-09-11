@@ -11,9 +11,7 @@ import 'package:lunasea/vendor.dart';
 class API {
   final LunaProfile profile;
 
-  API._internal({
-    required this.profile,
-  });
+  API._internal({required this.profile});
 
   factory API() {
     return API._internal(profile: LunaProfile.current);
@@ -58,23 +56,27 @@ class API {
     Response response = await _client.get('calendar');
     if (response.data.length > 0) {
       for (var entry in response.data) {
-        DateTime? date =
-            DateTime.tryParse(entry['releaseDate'] ?? '')?.toLocal().floor();
-        if (date != null && _isDateWithinBounds(date, today)) {
+        DateTime? date = DateTime.tryParse(
+          entry['releaseDate'] ?? '',
+        )?.toLocal().floor();
+        if (_isDateWithinBounds(date, today)) {
           List<CalendarData> day = map[date] ?? [];
-          day.add(CalendarLidarrData(
-            id: entry['id'] ?? 0,
-            title: entry['artist']['artistName'] ?? 'Unknown Artist',
-            albumTitle: entry['title'] ?? 'Unknown Album Title',
-            artistId: entry['artist']['id'] ?? 0,
-            totalTrackCount: entry['statistics'] != null
-                ? entry['statistics']['totalTrackCount'] ?? 0
-                : 0,
-            hasAllFiles: (entry['statistics'] != null
-                    ? entry['statistics']['percentOfTracks'] ?? 0
-                    : 0) ==
-                100,
-          ));
+          day.add(
+            CalendarLidarrData(
+              id: entry['id'] ?? 0,
+              title: entry['artist']['artistName'] ?? 'Unknown Artist',
+              albumTitle: entry['title'] ?? 'Unknown Album Title',
+              artistId: entry['artist']['id'] ?? 0,
+              totalTrackCount: entry['statistics'] != null
+                  ? entry['statistics']['totalTrackCount'] ?? 0
+                  : 0,
+              hasAllFiles:
+                  (entry['statistics'] != null
+                      ? entry['statistics']['percentOfTracks'] ?? 0
+                      : 0) ==
+                  100,
+            ),
+          );
           map[date] = day;
         }
       }
@@ -103,33 +105,34 @@ class API {
     Response response = await _client.get('calendar');
     if (response.data.length > 0) {
       for (var entry in response.data) {
-        DateTime? physicalRelease =
-            DateTime.tryParse(entry['physicalRelease'] ?? '')
-                ?.toLocal()
-                .floor();
-        DateTime? digitalRelease =
-            DateTime.tryParse(entry['digitalRelease'] ?? '')?.toLocal().floor();
+        DateTime? physicalRelease = DateTime.tryParse(
+          entry['physicalRelease'] ?? '',
+        )?.toLocal().floor();
+        DateTime? digitalRelease = DateTime.tryParse(
+          entry['digitalRelease'] ?? '',
+        )?.toLocal().floor();
         DateTime? release;
         if (physicalRelease != null || digitalRelease != null) {
-          if (physicalRelease == null) release = digitalRelease;
           if (digitalRelease == null) release = physicalRelease;
-          release ??= digitalRelease!.isBefore(physicalRelease!)
+          release ??= digitalRelease.isBefore(physicalRelease)
               ? digitalRelease
               : physicalRelease;
           if (_isDateWithinBounds(release, today)) {
             List<CalendarData> day = map[release] ?? [];
-            day.add(CalendarRadarrData(
-              id: entry['id'] ?? 0,
-              title: entry['title'] ?? 'Unknown Title',
-              hasFile: entry['hasFile'] ?? false,
-              fileQualityProfile: entry['hasFile']
-                  ? entry['movieFile']['quality']['quality']['name']
-                  : '',
-              year: entry['year'] ?? 0,
-              runtime: entry['runtime'] ?? 0,
-              studio: entry['studio'] ?? LunaUI.TEXT_EMDASH,
-              releaseDate: release,
-            ));
+            day.add(
+              CalendarRadarrData(
+                id: entry['id'] ?? 0,
+                title: entry['title'] ?? 'Unknown Title',
+                hasFile: entry['hasFile'] ?? false,
+                fileQualityProfile: entry['hasFile']
+                    ? entry['movieFile']['quality']['quality']['name']
+                    : '',
+                year: entry['year'] ?? 0,
+                runtime: entry['runtime'] ?? 0,
+                studio: entry['studio'] ?? LunaUI.TEXT_EMDASH,
+                releaseDate: release,
+              ),
+            );
             map[release] = day;
           }
         }
@@ -156,29 +159,32 @@ class API {
         maxRedirects: 5,
       ),
     );
-    Response response = await _client.get('calendar', queryParameters: {
-      'includeSeries': true,
-      'includeEpisodeFile': true,
-    });
+    Response response = await _client.get(
+      'calendar',
+      queryParameters: {'includeSeries': true, 'includeEpisodeFile': true},
+    );
     if (response.data.length > 0) {
       for (var entry in response.data) {
-        DateTime? date =
-            DateTime.tryParse(entry['airDateUtc'] ?? '')?.toLocal().floor();
-        if (date != null && _isDateWithinBounds(date, today)) {
+        DateTime? date = DateTime.tryParse(
+          entry['airDateUtc'] ?? '',
+        )?.toLocal().floor();
+        if (_isDateWithinBounds(date, today)) {
           List<CalendarData> day = map[date] ?? [];
-          day.add(CalendarSonarrData(
-            id: entry['id'] ?? 0,
-            seriesID: entry['seriesId'] ?? 0,
-            title: entry['series']['title'] ?? 'Unknown Series',
-            episodeTitle: entry['title'] ?? 'Unknown Episode Title',
-            seasonNumber: entry['seasonNumber'] ?? -1,
-            episodeNumber: entry['episodeNumber'] ?? -1,
-            airTime: entry['airDateUtc'] ?? '',
-            hasFile: entry['hasFile'] ?? false,
-            fileQualityProfile: entry['hasFile']
-                ? entry['episodeFile']['quality']['quality']['name']
-                : '',
-          ));
+          day.add(
+            CalendarSonarrData(
+              id: entry['id'] ?? 0,
+              seriesID: entry['seriesId'] ?? 0,
+              title: entry['series']['title'] ?? 'Unknown Series',
+              episodeTitle: entry['title'] ?? 'Unknown Episode Title',
+              seasonNumber: entry['seasonNumber'] ?? -1,
+              episodeNumber: entry['episodeNumber'] ?? -1,
+              airTime: entry['airDateUtc'] ?? '',
+              hasFile: entry['hasFile'] ?? false,
+              fileQualityProfile: entry['hasFile']
+                  ? entry['episodeFile']['quality']['quality']['name']
+                  : '',
+            ),
+          );
           map[date] = day;
         }
       }

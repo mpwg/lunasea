@@ -72,6 +72,7 @@ class LidarrCatalogueData {
       case LidarrCatalogueSorting.alphabetical:
         return sizeOnDisk.asBytes();
     }
+    return null;
   }
 
   String get trackStats {

@@ -66,13 +66,15 @@ extension LunaRadarrEventType on RadarrEventType {
   String? lunaReadable(RadarrHistoryRecord record) {
     switch (this) {
       case RadarrEventType.GRABBED:
-        return 'radarr.GrabbedFrom'
-            .tr(args: [(record.data ?? {})['indexer'] ?? LunaUI.TEXT_EMDASH]);
+        return 'radarr.GrabbedFrom'.tr(
+          args: [(record.data ?? {})['indexer'] ?? LunaUI.TEXT_EMDASH],
+        );
       case RadarrEventType.DOWNLOAD_FAILED:
         return 'radarr.DownloadFailed'.tr();
       case RadarrEventType.DOWNLOAD_FOLDER_IMPORTED:
-        return 'radarr.MovieImported'
-            .tr(args: [record.quality?.quality?.name ?? LunaUI.TEXT_EMDASH]);
+        return 'radarr.MovieImported'.tr(
+          args: [record.quality?.quality?.name ?? LunaUI.TEXT_EMDASH],
+        );
       case RadarrEventType.DOWNLOAD_IGNORED:
         return 'radarr.DownloadIgnored'.tr();
       case RadarrEventType.MOVIE_FILE_DELETED:
@@ -80,9 +82,11 @@ extension LunaRadarrEventType on RadarrEventType {
       case RadarrEventType.MOVIE_FILE_RENAMED:
         return 'radarr.MovieFileRenamed'.tr();
       case RadarrEventType.MOVIE_FOLDER_IMPORTED:
-        return 'radarr.MovieImported'
-            .tr(args: [record.quality?.quality?.name ?? LunaUI.TEXT_EMDASH]);
+        return 'radarr.MovieImported'.tr(
+          args: [record.quality?.quality?.name ?? LunaUI.TEXT_EMDASH],
+        );
     }
+    return null;
   }
 
   List<LunaTableContent> lunaTableContent(
@@ -144,17 +148,19 @@ extension LunaRadarrEventType on RadarrEventType {
       LunaTableContent(
         title: 'age',
         body: record.data!['ageHours'] != null
-            ? double.tryParse((record.data!['ageHours'] as String))
-                    ?.asTimeAgo() ??
-                LunaUI.TEXT_EMDASH
+            ? double.tryParse(
+                    (record.data!['ageHours'] as String),
+                  )?.asTimeAgo() ??
+                  LunaUI.TEXT_EMDASH
             : LunaUI.TEXT_EMDASH,
       ),
       LunaTableContent(
         title: 'published date',
         body: DateTime.tryParse(record.data!['publishedDate']) != null
-            ? DateTime.tryParse(record.data!['publishedDate'])
-                    ?.asDateTime(delimiter: '\n') ??
-                LunaUI.TEXT_EMDASH
+            ? DateTime.tryParse(
+                    record.data!['publishedDate'],
+                  )?.asDateTime(delimiter: '\n') ??
+                  LunaUI.TEXT_EMDASH
             : LunaUI.TEXT_EMDASH,
       ),
       LunaTableContent(
@@ -200,7 +206,8 @@ extension LunaRadarrEventType on RadarrEventType {
       ),
       LunaTableContent(
         title: 'languages',
-        body: record.languages
+        body:
+            record.languages
                 ?.map<String?>((language) => language.name)
                 .join('\n') ??
             LunaUI.TEXT_EMDASH,
@@ -283,9 +290,9 @@ extension LunaRadarrEventType on RadarrEventType {
       ),
       LunaTableContent(
         title: 'languages',
-        body: ([RadarrLanguage(name: LunaUI.TEXT_EMDASH)])
-            .map<String?>((language) => language.name)
-            .join('\n'),
+        body: ([
+          RadarrLanguage(name: LunaUI.TEXT_EMDASH),
+        ]).map<String?>((language) => language.name).join('\n'),
       ),
       LunaTableContent(
         title: 'client',

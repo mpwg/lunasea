@@ -21,9 +21,6 @@ extension LunaRadarrManualImportExtension on RadarrManualImport {
     if (this.movie == null) return LunaUI.TEXT_EMDASH;
     String title = this.movie!.title ?? LunaUI.TEXT_EMDASH;
     int? year = (this.movie!.year ?? 0) == 0 ? null : this.movie!.year;
-    return [
-      title,
-      if (year != null) '($year)',
-    ].join(' ');
+    return [title, '($year)'].join(' ');
   }
 }

@@ -83,6 +83,7 @@ extension SonarrEventTypeLunaExtension on SonarrEventType {
       case SonarrEventType.SERIES_FOLDER_IMPORTED:
         return 'sonarr.SeriesFolderImported'.tr();
     }
+    return null;
   }
 
   List<LunaTableContent> lunaTableContent({
@@ -165,10 +166,7 @@ extension SonarrEventTypeLunaExtension on SonarrEventType {
   ) {
     return [
       if (showSourceTitle)
-        LunaTableContent(
-          title: 'sonarr.Name'.tr(),
-          body: history.sourceTitle,
-        ),
+        LunaTableContent(title: 'sonarr.Name'.tr(), body: history.sourceTitle),
       LunaTableContent(
         title: 'sonarr.Message'.tr(),
         body: history.data!['message'],
@@ -274,9 +272,11 @@ extension SonarrEventTypeLunaExtension on SonarrEventType {
         body: double.tryParse(history.data!['ageHours'])?.asTimeAgo(),
       ),
       LunaTableContent(
-          title: 'sonarr.PublishedDate'.tr(),
-          body: DateTime.tryParse(history.data!['publishedDate'])
-              ?.asDateTime(delimiter: '\n')),
+        title: 'sonarr.PublishedDate'.tr(),
+        body: DateTime.tryParse(
+          history.data!['publishedDate'],
+        )?.asDateTime(delimiter: '\n'),
+      ),
     ];
   }
 
@@ -286,10 +286,7 @@ extension SonarrEventTypeLunaExtension on SonarrEventType {
   ) {
     return [
       if (showSourceTitle)
-        LunaTableContent(
-          title: 'sonarr.Name'.tr(),
-          body: history.sourceTitle,
-        ),
+        LunaTableContent(title: 'sonarr.Name'.tr(), body: history.sourceTitle),
     ];
   }
 }

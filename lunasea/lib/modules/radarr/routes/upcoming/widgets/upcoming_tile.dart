@@ -29,14 +29,11 @@ class _State extends State<RadarrUpcomingTile> {
       builder: (context, missing, _) {
         return LunaBlock(
           title: widget.movie.title,
-          body: [
-            _subtitle1(),
-            _subtitle2(),
-            _subtitle3(),
-          ],
+          body: [_subtitle1(), _subtitle2(), _subtitle3()],
           trailing: _trailing(),
-          backgroundUrl:
-              context.read<RadarrState>().getFanartURL(widget.movie.id),
+          backgroundUrl: context.read<RadarrState>().getFanartURL(
+            widget.movie.id,
+          ),
           posterHeaders: context.read<RadarrState>().headers,
           posterPlaceholderIcon: LunaIcons.VIDEO_CAM,
           posterIsSquare: false,
@@ -90,26 +87,19 @@ class _State extends State<RadarrUpcomingTile> {
       type = 'unknown';
     }
     return TextSpan(
-      style: TextStyle(
-        fontWeight: LunaUI.FONT_WEIGHT_BOLD,
-        color: color,
-      ),
+      style: TextStyle(fontWeight: LunaUI.FONT_WEIGHT_BOLD, color: color),
       children: [
         if (type == 'release')
           TextSpan(
-            text: _days == null
-                ? 'radarr.AvailabilityUnknown'.tr()
-                : _days == 'Today'
-                    ? 'radarr.AvailableToday'.tr()
-                    : 'radarr.AvailableIn'.tr(args: [_days]),
+            text: _days == 'Today'
+                ? 'radarr.AvailableToday'.tr()
+                : 'radarr.AvailableIn'.tr(args: [_days]),
           ),
         if (type == 'cinema')
           TextSpan(
-            text: _days == null
-                ? 'radarr.CinemaDateUnknown'.tr()
-                : _days == 'Today'
-                    ? 'radarr.InCinemasToday'.tr()
-                    : 'radarr.InCinemasIn'.tr(args: [_days]),
+            text: _days == 'Today'
+                ? 'radarr.InCinemasToday'.tr()
+                : 'radarr.InCinemasIn'.tr(args: [_days]),
           ),
         if (type == 'unknown') TextSpan(text: _days),
       ],
@@ -124,15 +114,13 @@ class _State extends State<RadarrUpcomingTile> {
         movieId: widget.movie.id!,
         title: widget.movie.title!,
       ),
-      onLongPress: () => RadarrRoutes.MOVIE_RELEASES.go(params: {
-        'movie': widget.movie.id!.toString(),
-      }),
+      onLongPress: () => RadarrRoutes.MOVIE_RELEASES.go(
+        params: {'movie': widget.movie.id!.toString()},
+      ),
     );
   }
 
   Future<void> _onTap() async {
-    RadarrRoutes.MOVIE.go(params: {
-      'movie': widget.movie.id!.toString(),
-    });
+    RadarrRoutes.MOVIE.go(params: {'movie': widget.movie.id!.toString()});
   }
 }

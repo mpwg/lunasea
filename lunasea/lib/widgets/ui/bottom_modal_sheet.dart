@@ -5,19 +5,15 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class LunaBottomModalSheet<T> {
   @protected
-  Future<T?> showModal({
-    Widget Function(BuildContext context)? builder,
-  }) async {
+  Future<T?> showModal({Widget Function(BuildContext context)? builder}) async {
     return showBarModalBottomSheet<T>(
       context: LunaState.context,
       expand: false,
-      backgroundColor:
-          LunaTheme.isAMOLEDTheme ? Colors.black : LunaColours.primary,
-      shape: LunaShapeBorder(
-        topOnly: true,
-        useBorder: LunaUI.shouldUseBorder,
-      ),
-      builder: builder ?? this.builder as Widget Function(BuildContext),
+      backgroundColor: LunaTheme.isAMOLEDTheme
+          ? Colors.black
+          : LunaColours.primary,
+      shape: LunaShapeBorder(topOnly: true, useBorder: LunaUI.shouldUseBorder),
+      builder: builder ?? this.builder,
       closeProgressThreshold: 0.90,
       elevation: LunaUI.ELEVATION,
       overlayStyle: LunaTheme().overlayStyle,
@@ -28,6 +24,5 @@ class LunaBottomModalSheet<T> {
 
   Future<dynamic> show({
     Widget Function(BuildContext context)? builder,
-  }) async =>
-      showModal(builder: builder);
+  }) async => showModal(builder: builder);
 }

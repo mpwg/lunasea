@@ -5,9 +5,7 @@ import 'package:lunasea/router/routes/search.dart';
 import 'package:lunasea/widgets/sheets/download_client/button.dart';
 
 class ResultsRoute extends StatefulWidget {
-  const ResultsRoute({
-    Key? key,
-  }) : super(key: key);
+  const ResultsRoute({Key? key}) : super(key: key);
 
   @override
   State<ResultsRoute> createState() => _State();
@@ -28,8 +26,9 @@ class _State extends State<ResultsRoute> with LunaScrollControllerMixin {
 
   Future<void> _fetchPage(int pageKey) async {
     NewznabCategoryData? category = context.read<SearchState>().activeCategory;
-    NewznabSubcategoryData? subcategory =
-        context.read<SearchState>().activeSubcategory;
+    NewznabSubcategoryData? subcategory = context
+        .read<SearchState>()
+        .activeSubcategory;
     await context
         .read<SearchState>()
         .api
@@ -38,16 +37,17 @@ class _State extends State<ResultsRoute> with LunaScrollControllerMixin {
           offset: pageKey,
         )
         .then((data) {
-      if (data.isEmpty) return _pagingController.appendLastPage([]);
-      return _pagingController.appendPage(data, pageKey + 1);
-    }).catchError((error, stack) {
-      LunaLogger().error(
-        'Unable to fetch search results page: $pageKey',
-        error,
-        stack,
-      );
-      _pagingController.error = error;
-    });
+          if (data.isEmpty) return _pagingController.appendLastPage([]);
+          return _pagingController.appendPage(data, pageKey + 1);
+        })
+        .catchError((error, stack) {
+          LunaLogger().error(
+            'Unable to fetch search results page: $pageKey',
+            error,
+            stack,
+          );
+          _pagingController.error = error;
+        });
   }
 
   @override
@@ -62,14 +62,15 @@ class _State extends State<ResultsRoute> with LunaScrollControllerMixin {
   Widget _appBar() {
     String? title = 'search.Results'.tr();
     NewznabCategoryData? category = context.read<SearchState>().activeCategory;
-    NewznabSubcategoryData? subcategory =
-        context.read<SearchState>().activeSubcategory;
+    NewznabSubcategoryData? subcategory = context
+        .read<SearchState>()
+        .activeSubcategory;
     if (category != null) title = category.name;
     if (category != null && subcategory != null) {
       title = '$title > ${subcategory.name ?? 'lunasea.Unknown'.tr()}';
     }
     return LunaAppBar(
-      title: title!,
+      title: title,
       actions: [
         const DownloadClientButton(),
         LunaIconButton(

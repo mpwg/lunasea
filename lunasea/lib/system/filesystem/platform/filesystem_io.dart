@@ -43,11 +43,9 @@ class _Desktop extends _Shared {
         fileName: name,
         lockParentWindow: true,
       );
-      if (path != null) {
-        File file = File(path);
-        file.writeAsBytesSync(data);
-        return true;
-      }
+      File file = File(path);
+      file.writeAsBytesSync(data);
+      return true;
       return false;
     } catch (error, stack) {
       LunaLogger().error('Failed to save to filesystem', error, stack);
@@ -98,10 +96,9 @@ class _Mobile extends _Shared {
       Rect? rect;
       if (box != null) rect = box.localToGlobal(Offset.zero) & box.size;
 
-      ShareResult result = await Share.shareXFiles(
-        [XFile(path)],
-        sharePositionOrigin: rect,
-      );
+      ShareResult result = await Share.shareXFiles([
+        XFile(path),
+      ], sharePositionOrigin: rect);
       switch (result.status) {
         case ShareResultStatus.success:
           return true;
